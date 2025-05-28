@@ -47,7 +47,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].bundle.js",
-    publicPath: "/",
+    publicPath: "./",
     clean: true,
   },
   module: {
@@ -65,13 +65,22 @@ module.exports = {
       },
       // SCSS compilation and extraction
       {
-        test: /\.scss$/,
-        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+        test: /\.(scss|css)$/,
+        use: [
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              publicPath: "../", // Points to dist root from css folder
+            },
+          },
+          "css-loader",
+          "sass-loader",
+        ],
       },
       // Image handling (JPG, WebP, SVG, etc.)
       // !File-loader is already depricated, using Asset/Resource method
       {
-        test: /\.(jpg|jpeg|png|gif|svg|webp)$/,
+        test: /\.(jpg|jpeg|png|gif|svg|webp)$/i,
         type: "asset/resource",
         generator: {
           filename: "media/img/[name][contenthash:8][ext]",
@@ -125,89 +134,145 @@ module.exports = {
       filename: "css/[name].css",
     }),
     // Generate render points from PUG
-    new HtmlWebpackPlugin({
-      template: "./src/index.pug",
-      filename: "index.html",
-      chunks: ["index"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/projects.pug",
-      filename: "projects.html",
-      chunks: ["projects"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/web-snippets.pug",
-      filename: "web-snippets.html",
-      chunks: ["web-snippets"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/storage-tools.pug",
-      filename: "storage-tools.html",
-      chunks: ["storage-tools"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/batch-tools.pug",
-      filename: "batch-tools.html",
-      chunks: ["batch-tools"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/settings.pug",
-      filename: "settings.html",
-      chunks: ["settings"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/about.pug",
-      filename: "about.html",
-      chunks: ["about"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/no-mobile.pug",
-      filename: "no-mobile.html",
-      chunks: ["no-mobile"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/output1.pug",
-      filename: "output1.html",
-      chunks: ["output1"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/output2.pug",
-      filename: "output2.html",
-      chunks: ["output2"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/testbed1.pug",
-      filename: "testbed1.html",
-      chunks: ["testbed1"],
-      inject: true,
-    }),
-    new HtmlWebpackPlugin({
-      template: "./src/testbed2.pug",
-      filename: "testbed2.html",
-      chunks: ["testbed2"],
-      inject: true,
-    }),
+    ...[
+      "index",
+      "projects",
+      "web-snippets",
+      "storage-tools",
+      "batch-tools",
+      "settings",
+      "about",
+      "no-mobile",
+      "output1",
+      "output2",
+      "testbed1",
+      "testbed2",
+    ].map(
+      (page) =>
+        new HtmlWebpackPlugin({
+          template: `./src/${page}.pug`,
+          filename: `${page}.html`,
+          chunks: [page],
+          inject: true,
+        })
+    ),
+
+    // new HtmlWebpackPlugin({
+    //   template: "./src/index.pug",
+    //   filename: "index.html",
+    //   chunks: ["index"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/projects.pug",
+    //   filename: "projects.html",
+    //   chunks: ["projects"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/web-snippets.pug",
+    //   filename: "web-snippets.html",
+    //   chunks: ["web-snippets"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/storage-tools.pug",
+    //   filename: "storage-tools.html",
+    //   chunks: ["storage-tools"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/batch-tools.pug",
+    //   filename: "batch-tools.html",
+    //   chunks: ["batch-tools"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/settings.pug",
+    //   filename: "settings.html",
+    //   chunks: ["settings"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/about.pug",
+    //   filename: "about.html",
+    //   chunks: ["about"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/no-mobile.pug",
+    //   filename: "no-mobile.html",
+    //   chunks: ["no-mobile"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/output1.pug",
+    //   filename: "output1.html",
+    //   chunks: ["output1"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/output2.pug",
+    //   filename: "output2.html",
+    //   chunks: ["output2"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/testbed1.pug",
+    //   filename: "testbed1.html",
+    //   chunks: ["testbed1"],
+    //   inject: true,
+    // }),
+    // new HtmlWebpackPlugin({
+    //   template: "./src/testbed2.pug",
+    //   filename: "testbed2.html",
+    //   chunks: ["testbed2"],
+    //   inject: true,
+    // }),
     // Copy assets to dist folder regardless of their usage or not
+
     new CopyWebpackPlugin({
       patterns: [
-        { from: "src/media/aud", to: "media/aud" },
-        // turn on if you like to work with video files
-        // { from: "src/media/vid", to: "media/vid" },
-        { from: "src/media/img", to: "media/img" },
-        { from: "src/media/docs", to: "media/docs" },
+        {
+          from: "src/media/aud",
+          to: "media/aud",
+          noErrorOnMissing: true,
+        },
+        {
+          from: "src/media/img",
+          to: "media/img",
+          filter: (resourcePath) => {
+            // Copy only specific image formats
+            const ext = path.extname(resourcePath).toLowerCase();
+            return [".gif", ".png", ".jpg", ".jpeg", ".webp", ".svg"].includes(
+              ext
+            );
+          },
+        },
+        {
+          from: "src/media/docs",
+          to: "media/docs",
+          noErrorOnMissing: true,
+        },
+        // Add fonts copy pattern
+        {
+          from: "src/fonts",
+          to: "fonts",
+          noErrorOnMissing: true,
+        },
       ],
     }),
   ],
+
+  // new CopyWebpackPlugin({
+  //   patterns: [
+  //     { from: "src/media/aud", to: "media/aud" },
+  //     // turn on if you like to work with video files
+  //     // { from: "src/media/vid", to: "media/vid" },
+  //     { from: "src/media/img", to: "media/img" },
+  //     { from: "src/media/docs", to: "media/docs" },
+  //   ],
+  // }),
 
   // Makes sure that all changes are monitored
   watchOptions: {
