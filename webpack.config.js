@@ -134,101 +134,101 @@ module.exports = {
       filename: "css/[name].css",
     }),
     // Generate render points from PUG
-    ...[
-      "index",
-      "projects",
-      "web-snippets",
-      "storage-tools",
-      "batch-tools",
-      "settings",
-      "about",
-      "no-mobile",
-      "output1",
-      "output2",
-      "testbed1",
-      "testbed2",
-    ].map(
-      (page) =>
-        new HtmlWebpackPlugin({
-          template: `./src/${page}.pug`,
-          filename: `${page}.html`,
-          chunks: [page],
-          inject: true,
-        })
-    ),
+    // ...[
+    //   "index",
+    //   "projects",
+    //   "web-snippets",
+    //   "storage-tools",
+    //   "batch-tools",
+    //   "settings",
+    //   "about",
+    //   "no-mobile",
+    //   "output1",
+    //   "output2",
+    //   "testbed1",
+    //   "testbed2",
+    // ].map(
+    //   (page) =>
+    //     new HtmlWebpackPlugin({
+    //       template: `./src/${page}.pug`,
+    //       filename: `${page}.html`,
+    //       chunks: [page],
+    //       inject: true,
+    //     })
+    // ),
 
-    // new HtmlWebpackPlugin({
-    //   template: "./src/index.pug",
-    //   filename: "index.html",
-    //   chunks: ["index"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/projects.pug",
-    //   filename: "projects.html",
-    //   chunks: ["projects"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/web-snippets.pug",
-    //   filename: "web-snippets.html",
-    //   chunks: ["web-snippets"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/storage-tools.pug",
-    //   filename: "storage-tools.html",
-    //   chunks: ["storage-tools"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/batch-tools.pug",
-    //   filename: "batch-tools.html",
-    //   chunks: ["batch-tools"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/settings.pug",
-    //   filename: "settings.html",
-    //   chunks: ["settings"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/about.pug",
-    //   filename: "about.html",
-    //   chunks: ["about"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/no-mobile.pug",
-    //   filename: "no-mobile.html",
-    //   chunks: ["no-mobile"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/output1.pug",
-    //   filename: "output1.html",
-    //   chunks: ["output1"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/output2.pug",
-    //   filename: "output2.html",
-    //   chunks: ["output2"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/testbed1.pug",
-    //   filename: "testbed1.html",
-    //   chunks: ["testbed1"],
-    //   inject: true,
-    // }),
-    // new HtmlWebpackPlugin({
-    //   template: "./src/testbed2.pug",
-    //   filename: "testbed2.html",
-    //   chunks: ["testbed2"],
-    //   inject: true,
-    // }),
+    new HtmlWebpackPlugin({
+      template: "./src/index.pug",
+      filename: "index.html",
+      chunks: ["index"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/projects.pug",
+      filename: "projects.html",
+      chunks: ["projects"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/web-snippets.pug",
+      filename: "web-snippets.html",
+      chunks: ["web-snippets"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/storage-tools.pug",
+      filename: "storage-tools.html",
+      chunks: ["storage-tools"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/batch-tools.pug",
+      filename: "batch-tools.html",
+      chunks: ["batch-tools"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/settings.pug",
+      filename: "settings.html",
+      chunks: ["settings"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/about.pug",
+      filename: "about.html",
+      chunks: ["about"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/no-mobile.pug",
+      filename: "no-mobile.html",
+      chunks: ["no-mobile"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/output1.pug",
+      filename: "output1.html",
+      chunks: ["output1"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/output2.pug",
+      filename: "output2.html",
+      chunks: ["output2"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/testbed1.pug",
+      filename: "testbed1.html",
+      chunks: ["testbed1"],
+      inject: true,
+    }),
+    new HtmlWebpackPlugin({
+      template: "./src/testbed2.pug",
+      filename: "testbed2.html",
+      chunks: ["testbed2"],
+      inject: true,
+    }),
     // Copy assets to dist folder regardless of their usage or not
 
     new CopyWebpackPlugin({
