@@ -241,7 +241,6 @@ module.exports = {
         {
           from: "src/media/img",
           to: "media/img",
-          // No filter needed - asset module handles processing
           noErrorOnMissing: true,
         },
         {
