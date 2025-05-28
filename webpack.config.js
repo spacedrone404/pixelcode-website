@@ -121,7 +121,14 @@ module.exports = {
       // PUG processing
       {
         test: /\.pug$/,
-        use: "pug-loader",
+        use: [
+          {
+            loader: "pug-loader",
+            options: {
+              esModule: false, // Enables CommonJS-style `require()` in PUG
+            },
+          },
+        ],
       },
     ],
   },
@@ -238,11 +245,11 @@ module.exports = {
           to: "media/aud",
           noErrorOnMissing: true,
         },
-        {
-          from: "src/media/img",
-          to: "media/img",
-          noErrorOnMissing: true,
-        },
+        // {
+        //   from: "src/media/img",
+        //   to: "media/img",
+        //   noErrorOnMissing: true,
+        // },
         {
           from: "src/media/docs",
           to: "media/docs",
