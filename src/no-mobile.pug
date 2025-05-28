@@ -1,0 +1,61 @@
+title No cell & tablet mutants allowed!
+
+style. 
+  .no-mobos-wrapper {
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; 
+    image-rendering: pixelated;
+
+  }
+
+  .no-mobos-parag {
+    font-family: "BlueTerminal";
+    padding: 10px;
+    font-size: 34px;
+    font-weight: 900;
+    border: green groove 4px;
+    
+  }
+
+  .no-mobos-img-wrapper {
+    display: flex;
+    gap: 80px;
+  }
+
+  .cursor-pink {
+  display: flex;
+  position: absolute;
+  transform: translateY(100%);
+  width: 30px;
+  height: 20px;
+  background-color: red;
+  vertical-align: bottom;
+  animation: blink-pink 2s step-start infinite;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  }
+
+
+  @keyframes blink-pink {
+    50% {
+      opacity: 0;
+      box-shadow: 4px 4px 29px 0px rgba(255, 0, 191, 0.99);
+    }
+  }
+
+block variables 
+  - var nameTitle = 'No mobile cr#p here!'
+
+block main
+  .no-mobos-wrapper    
+    p.no-mobos-parag NO CELL MUTANTS ALLOWED! 
+    .no-mobos-img-wrapper
+      img(src="media/img/no-phones.png", alt="No mobo-phones!")
+      img(src="media/img/no-mutants.png", width="109%", height="109%", alt="No mutants!", style="margin-top: -12px;")
+    p.no-mobos-parag JUST GO AWAY       
+    .cursor-pink REC
+    

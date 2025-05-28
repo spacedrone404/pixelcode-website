@@ -1,0 +1,280 @@
+extends includes/_layout/layout
+block variables 
+  - var nameTitle = 'Storage tools'
+  
+block main
+  body.chamelion 
+    +sidemenu('backup')
+
+    .page-wrapper.wrapper
+      .tools-intro Here you will find diverse automations related to storage and backups. Most of them are Batch and Powershell scripts. Note that all stuff is 100% Windows 7 compatible. Have fun with it!
+
+      .batch-title DELETE ANDROID RELATED FOLDERS FROM FLASH DISK OR SD-CARD
+      .crt-container
+        pre.crt-text.
+          @echo off 
+          for %%F in (Movies Pictures Ringtones Recordings Podcasts Notifications Documents Audiobooks Android DCIM LOST.DIR) do (if exist %%F (rd /s /q %%F))
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title EJECT ALL CONNECTED FLASH DRIVES
+      .crt-container
+        pre.crt-text.
+          @echo off
+          setlocal enabledelayedexpansion
+
+          set "drivelist=%temp%\usb_drives_list.txt"
+          del "%drivelist%" >nul 2>nul
+
+          for /f "skip=1 tokens=1" %%D in ('wmic logicaldisk where "drivetype=2" get deviceid') do (
+              if exist "%%D\" (
+                  echo %%D>>"%drivelist%"
+              )
+          )
+
+          if not exist "%drivelist%" (
+              echo No flash drives found!
+              pause
+              exit /b
+          )
+
+
+          for /f "usebackq delims=" %%D in ("%drivelist%") do (
+                  powershell -NoProfile -Command "(New-Object -ComObject Shell.Application).NameSpace(17).ParseName('%%D').InvokeVerb('Eject')"
+              )
+          echo Flash drives ejected!
+          )
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title COPY FROM SMARTPHONE VIA ADB INTERFACE
+      .crt-container
+        pre.crt-text.
+          c:
+          cd "C:\Program Files (x86)\ClockworkMod\Universal Adb Driver" 
+          adb pull /storage/emulated/0/DCIM/Camera C:\Users\user\Desktop\4STOCK
+          adb pull /storage/emulated/0/Pictures/Raw C:\Users\user\Desktop\4STOCK
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title COPY TO SMARTPHONE VIA ADB INTERFACE
+      .crt-container
+        pre.crt-text.
+          adb push /storage/emulated/0/Download D:\DOWNLOADS\4OPPO
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title COPY A CERTAIN FILE TO A CERTAIN EXTERNAL STORAGE 
+      .crt-container
+        pre.crt-text.
+          @echo off
+          set "USBDrive="
+          for %%I in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+              2>nul vol %%I: | find "1189-61B7" > nul
+              if not errorlevel 1 (
+                  set "USBDrive=%%I:"
+              )
+          )
+          copy "E:\!analyze\!q.txt" "%USBDrive%"
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title COPY CERTAIN FILE FROM CERTAIN EXTERNAL STORAGE TO COMPUTER
+      .crt-container
+        pre.crt-text.
+          @echo off
+
+          set "USBDrive="
+          for %%I in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+              2>nul vol %%I: | find "1189-61B7" > nul
+              if not errorlevel 1 (
+                  set "USBDrive=%%I:"
+              )
+          )
+          copy "%USBDrive%\!a.txt" "E:\!analyze\"
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title COPY ZIP ARHIVE OF A FOLDER WITH INCREMENTAL NAME TO A CERTAIN EXTERNAL STORAGE 
+      .crt-container
+        pre.crt-text.
+          @echo off
+          set "USBDrive="
+          for %%I in (A B C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+              2>nul vol %%I: | find "2689-67B7" > nul
+              if not errorlevel 1 (
+                  set "USBDrive=%%I:"
+              )
+          )
+
+          set "AnalyzeFolder=E:\\!analyze"
+          set "ArchiveBaseName=AnalyzeBackup_%date:~0,4%-%date:~5,2%-%date:~8,2%"
+          set "ArchiveExtension=.zip"
+          set "ArchiveName=%ArchiveBaseName%%ArchiveExtension%"
+
+
+          "C:\\Program Files\\7-Zip\\7z.exe" a -r "%ArchiveName%" "%AnalyzeFolder%\\*" -xr!q
+
+          set "FinalArchiveName=%ArchiveName%"
+          set /a Index=1
+
+          :CheckName
+          if exist "%USBDrive%\\!!!!\\%FinalArchiveName%" (
+              set "FinalArchiveName=%ArchiveBaseName%-%Index%%ArchiveExtension%"
+              set /a Index+=1
+              goto CheckName
+          )
+
+          move "%ArchiveName%" "%USBDrive%\\!!!!\\%FinalArchiveName%" > nul
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title LOOPS THROUGH EXTERNALLY ATTACHED STORAGE, FINDS SPECIFIC FOLDERS, AND MOVES THEM TO A COMPUTER
+      .crt-container
+        pre.crt-text.
+          @echo off
+          setlocal enabledelayedexpansion
+
+          :: Local destination folder
+          set "destFolder=C:\Users\user\Desktop\4STOCK"
+
+
+          :: Loop through all drives to find removable drives
+          for %%D in (C D E F G H I J K L M N O P Q R S T U V W X Y Z) do (
+              :: Check if the drive is removable
+              wmic logicaldisk where "DeviceID='%%D:' and DriveType=2" get DeviceID 2>nul | find "%%D:" >nul
+              if !errorlevel! equ 0 (
+
+              Robocopy "%%D:\DCIM\100NOKIA" "%destFolder%" *.JPG *.JPEG *.ORF *.DNG *.MP4 /E /MOV /MAXAGE:8 
+              Robocopy "%%D:\DCIM\100OLYMP" "%destFolder%" *.JPG *.JPEG *.ORF *.DNG *.MP4 /E /MOV /MAXAGE:8 
+              Robocopy "%%D:\DCIM\101RICOH" "%destFolder%" *.JPG *.JPEG *.ORF *.DNG *.MP4 /E /MOV /MAXAGE:8      
+                  )
+              )
+          Robocopy C:\Users\user\_NEXT\4JUNK "%destFolder%" *.DNG *.ORF *.JPG *.MP4 *.MOV *.JPEG /XO /E /MOV
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+
+      .batch-title BACKUP CONTENT OF CERTAIN FOLDER TO A ZIP ARCHIVE WITH CURRENT DATE TO ANOTHER FOLDER
+      .crt-container
+        pre.crt-text.
+          @echo off
+          setlocal enableextensions enableddelayeexpansion
+
+          set "source=C:\Site"
+          set "dest=E:\Backups\!!!!"
+
+          ::  splitting %DATE% into MM/DD/YYYY parts, this part was a bitch to implement
+          for /F "tokens=1-3 delims=/." %%A in ("%DATE%") do (
+            set month=%%B
+            set day=%%A
+            set year=%%C
+          )
+
+          :: converting date stamp to YYYY-MM-DD
+          set "formatted_date=%year%-%month%-%day%"
+
+          :: final name
+          set "archive_name=projects-%formatted_date%.7z"
+
+          :: backing things up
+          "%ProgramFiles%\7-Zip\7z.exe" a -t7z "%dest%\%archive_name%" "%source%\*"
+          if errorlevel 1 goto :err_create_archive
+
+          :: integrigty check
+          "%ProgramFiles%\7-Zip\7z.exe" t "%dest%\%archive_name%"
+          if errorlevel 1 goto :err_test_archive
+
+          goto :end_script
+
+          :err_create_archive
+          echo Error while creating archive!
+          goto :end_script
+
+          :err_test_archive
+          echo Integrity check failed! Archive is corrupted.
+          goto :end_script
+
+          :end_script
+          endlocal
+          exit /b
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title REPLICATE TO ALL CONNECTED FLASH DRIVES ALL TODAY'S MP4 FILES THAT ARE LOCATED IN CERTAIN FOLDER
+      .crt-container
+        pre.crt-text.
+          @echo off
+          setlocal enabledelayedexpansion
+
+          :: get today's date 
+          for /f %%A in ('powershell -NoProfile -Command "Get-Date -Format \"yyyyMMdd\""') do set "TODAY=%%A"
+
+          set "SOURCEDIR=D:\Videos"
+
+          :: build file list with FULL paths
+          set "filelist=%temp%\today_mp4_fullpaths.txt"
+          del "%filelist%" >nul 2>nul
+
+          for /f "delims=" %%F in ('powershell -NoProfile -Command ^
+              "$today = \"%TODAY%\"; Get-ChildItem -Path '%SOURCEDIR%' -Recurse -Filter '*.mp4' | Where-Object {$_.LastWriteTime.ToString('yyyyMMdd') -eq $today} | Select-Object -ExpandProperty FullName"') do (
+              echo %%F>>"%filelist%"
+          )
+
+          :: check if any files found
+          if not exist "%filelist%" (
+              echo No mp4 files modified today were found!
+              pause
+              exit /b
+          )
+
+          :: detect all connected USB drives
+          set "drivelist=%temp%\usb_drives_list.txt"
+          del "%drivelist%" >nul 2>nul
+
+          for /f "skip=1 tokens=1" %%D in ('wmic logicaldisk where "drivetype=2" get deviceid') do (
+              if exist "%%D\" (
+                  echo %%D>>"%drivelist%"
+              )
+          )
+
+          if not exist "%drivelist%" (
+              echo No flash drives found!
+              pause
+              exit /b
+          )
+
+          :: Start parallel xcopy jobs with eject after finish
+          set "copy_jobs=0"
+          for /f "usebackq delims=" %%D in ("%drivelist%") do (
+              set /a copy_jobs+=1
+              echo Starting copy to drive %%D...
+              start "CopyToUSB!copy_jobs!" /min cmd /c (
+                  for /f "usebackq delims=" %%F in ("%filelist%") do (
+                      echo Copying %%~nxF to %%D
+                      xcopy "%%F" "%%D\" /Y /Q >nul
+                  )
+                  echo Done copying to %%D
+                  timeout /t 2 >nul
+                  echo Ejecting drive %%D...
+                  powershell -NoProfile -Command "(New-Object -ComObject Shell.Application).NameSpace(17).ParseName('%%D').InvokeVerb('Eject')"
+              )
+          )
+
+          echo All xcopy operations started minimized in parallel!
+
+          timeout /t 2 >nul
+
+          powershell -c (New-Object Media.SoundPlayer "C:\Windows\Media\notify.wav").PlaySync()
+
+          powershell -noprofile -executionpolicy bypass -command "& {Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.MessageBox]::Show('Cloning has been complete', 'USBCloner', 'OK')} "
+
+          exit /b
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title MORE SNIPPETS TO COME!
+      .crt-container
+        pre.crt-text.
+          HOLD YER HORSERS WEB SURFER, MORE SNIPPETS TO COME IN A WHILE!
+        button.copy-button(aria-label="Copy code to clipboard") Copy

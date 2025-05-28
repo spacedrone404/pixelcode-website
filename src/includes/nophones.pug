@@ -1,0 +1,118 @@
+style. 
+  #popup-container-img {
+      position: fixed;
+      top: 40%;
+      left: 85%;
+      width: 100px;      
+      padding: 10px;
+      background-color: transparent;
+      border-radius: 50%; 
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      border: 0 !important;
+      outline: 0 !important;
+      transform: scale(0.7) rotate(48deg);
+      transition: all 0.4s ease-in-out;
+      z-index: 10000;
+      pointer-events: none; 
+  }
+
+
+  #popup-container-img.visible-img {
+      opacity: 1;
+      transform: scale(1) rotate(-8deg);
+      pointer-events: auto;
+  }
+
+  .popup-content-img  {
+      border: 0 !important;
+      outline: 0 !important;
+  }
+
+  .popup-content-img p {
+      font-size: 18px; 
+      margin-top: 10px;
+      color: white;
+      margin: 0;
+      text-align: center;
+  }
+
+  .close-btn-img {
+      float: right;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;      
+      
+  }
+
+  .close-btn-img:hover {
+      cursor: url(../media/img/_cur/cursor.gif), auto;
+  }
+
+  .hidden-img {
+      display: none !important;
+  }
+
+  .no-phones-ani {
+    transition: all 0.8s ease-in-out;
+  }
+
+  .no-phones-ani:hover {
+      box-shadow: 4px 4px 69px 16px rgba(255, 0, 123, 0.88) inset;
+      border-radius: 50%;
+      transition: all 0.6s ease-in-out;
+  }
+
+  #popup-container-img.hidden-img {
+      display: none;
+  }
+
+#popup-container-img.hidden-img
+  .popup-content-img
+    span.close-btn-img
+      img(src=require("../media/img/no-phones.png"), class="no-phones-ani" alt="No phones please!")
+
+
+script. 
+    document.addEventListener("DOMContentLoaded", function() {
+        const popupContainerImg = document.getElementById('popup-container-img');
+        const closeBtnImg = document.querySelector('.close-btn-img');
+
+        function showPopupImg() {
+            // remove hidden to animate
+            popupContainerImg.classList.remove('hidden-img');
+
+            // delayed addition of the class 
+            setTimeout(() => {
+                popupContainerImg.classList.add('visible-img');
+            }, 64); 
+        }
+
+        function hidePopupImg() {
+            // smooth removal 
+            popupContainerImg.classList.remove('visible-img');
+
+            // hiding after transition
+            popupContainerImg.addEventListener('transitionend', () => {
+                popupContainerImg.classList.add('hidden-img');
+            }, { once: true });
+        }
+
+        closeBtnImg.addEventListener('click', () => {
+            hidePopupImg();
+        });
+
+        setTimeout(() => {
+            showPopupImg();
+        }, 1000);     
+    });
+
+
+    //- Audio for no-smartphones
+
+    const soundPhone = new Audio("../media/aud/enter.mp3");   
+    soundPhone.volume = 0.1; 
+    document.getElementById('popup-container-img').addEventListener('click', function() { 
+    soundPhone.play();
+    }); 

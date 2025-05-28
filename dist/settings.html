@@ -1,0 +1,532 @@
+<style>.to-do-list {
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 600px;
+}
+.to-do-title {
+  display: flex;
+  justify-content: center;
+  font-size: 28px;
+  font-family: "BlueTerminal"
+  }
+.to-do-list li {
+  margin-bottom: -30px;
+  list-style: disc;
+  text-align: left;
+  
+}</style><!doctype html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><link rel="icon" href="/media/img/logo/square.png" sizes="48x48" type="image/png"><title>Settings &amp; ToDo list</title><script defer="defer" src="/js/settings.bundle.js"></script><link href="/css/settings.css" rel="stylesheet"></head><body><div class="menu-top-wrapper chamelion"><div class="logo"><a href="index.html"><img src="/media/img/circlecde6d584.png" alt="Pixel Author"></a></div><a class="title-link" href="index.html"><div class="title title-style"><p>PIXELCODE</p></div></a><ul><li class="menu-top-link"><a href="projects.html">Projects</a></li><li class="menu-top-link"><a href="web-snippets.html">Snippets</a></li><li class="menu-top-link"><a href="storage-tools.html">Backup</a></li><li class="menu-top-link"><a href="batch-tools.html">Batches</a></li><li class="menu-top-link"><a href="settings.html">Settings</a></li><li class="menu-top-link"><a href="about.html">About</a></li><li class="menu-top-link"><button id="theme-toggle">☼</button></li></ul></div><div class="rainbow-line"></div><div class="menu-secondary-wrapper"><ul class="menu-secondary-list chamelion"><li><a href="">Modal #1</a></li><li><a href="">Modal #2</a></li><li><a href="">Print Body</a></li><li><a href="">More Stuff</a></li></ul></div><style>.pin {
+  background-color: #aaa;
+  display: block;
+  height: 12px;
+  width: 2px;
+  position: absolute;
+  left: 15%;
+  top: 12px;
+
+}
+
+.pin:before {
+  background-color: hsl(0 0% 0% / 0.1);
+  box-shadow: 0 0 0.25em hsl(0 0% 0% / 0.1);
+  content: "";
+  height: 22px;
+  width: 3px;
+  left: 0;
+  position: absolute;
+  top: -11px;
+  transform: rotate(47.5deg);
+  transform-origin: 50% 100%;
+}
+
+.pin:after {
+  background-color: red;
+  box-shadow: inset 0 0 0 1px hsl(0 0% 0% / 0.1),
+    inset 3px 3px 3px hsl(0 0% 100% / 0.07),
+    inset -3px -3px 3px hsl(0 0% 0% / 0.07), 15px 1px 3px hsl(0 0% 0% / 0.09);
+  border-radius: 50%;
+  content: "";
+  height: 12px;
+  left: -5px;
+  position: absolute;
+  top: -10px;
+  width: 12px;
+}
+
+.note {
+  width: 100px;
+  height: 60px;
+  padding: 7px;
+  font-size: 11px;
+  box-shadow: 4px 4px 5px 0 rgb(0 0 0 / 0.18);
+  animation: note-slide 0.8s ease-in-out;
+  z-index: 1000;
+  transform: rotate(8deg);
+}
+
+@keyframes note-slide {
+  from {
+    transform: translateX(-100%) rotate(-20deg);
+    display: none;
+    opacity: 0;
+    filter: blur(8px);
+  }
+
+  to {
+    transform: translateX(0%) rotate(11deg);
+    display: block;
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+.blue {
+  background: linear-gradient(90deg, #fff0 0%, rgb(17, 96, 221) 90%);
+
+}
+
+#morf-date {
+  display: flex;
+  transform: translateX(50px);
+  font-size: 25px;
+  font-weight: bold;
+  justify-content: center;
+}
+
+#morf-month {
+  display: flex;
+  transform: translateX(24px);
+  font-size: 22px;
+}
+
+.date-wrapper {
+  position: absolute;
+    margin: 25px;
+    bottom: 1vw;
+    z-index: 9999;
+    left: 0;
+    transform: translateX(-90%);
+}
+.date-wrapper p {
+  width: 80px;
+  font-size: 28px;
+}</style><div class="footer-wrapper chamelion"><div class="date-wrapper"><div class="note blue"><div class="pin"><div id="morf-date"></div><div id="morf-month"></div></div></div></div><p class="footer-left">Create resources, <a href="https://github.com/spacedrone404">not accounts</a>!</p><p class="footer-right">© 2025 Copyleft by <a href="https://trackerninja.codeberg.page">TrackerNinja</a></p><script>const months = [
+"January",
+"February",
+"March",
+"April",
+"May",
+"June",
+"July",
+"August",
+"September",
+"October",
+"November",
+"December",
+];
+let currentDate = new Date();
+let dateString = `${currentDate.getDate()}`;
+let monthString = `${months[currentDate.getMonth()]}`;
+
+document.getElementById("morf-date").textContent = dateString;
+document.getElementById("morf-month").textContent = monthString;</script></div><style>#scrollTop {
+  position: fixed;
+  bottom: 140px;
+  left: 90px;
+  z-index: 10000;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  border-radius: 50%;
+  font-size: 22px;
+  font-weight: 700;
+  width: 54px;
+  height: 54px;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.6s ease-in-out, scale 0.4s ease-in-out;
+  scale: 100%;
+}
+
+#scrollTop:hover {
+  border-radius: 50%;
+  transition: all 1.8s ease-in-out, scale 0.4s ease-in-out;
+  scale: 108%;
+}
+
+#scrollTop.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#scrollTop.hide {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.scroll-arrow {
+  filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(108%) contrast(103%);
+}</style><button id="scrollTop" onclick="topFunction()" title="To top"><img class="scroll-arrow" src="/media/img/scrollup7892e717.svg" alt="To Top"></button><script>window.topFunction = topFunction;
+
+let lastScrollTop = 0;
+let scrollTopBtn = document.getElementById("scrollTop");
+
+window.onscroll = function () {
+  scrollFunction();
+};
+function scrollFunction() {
+  let currentScroll = window.scrollY || document.documentElement.scrollTop;
+  if (currentScroll > 512) {
+    if (!scrollTopBtn.classList.contains("show")) {
+      scrollTopBtn.classList.remove("hide");
+      scrollTopBtn.classList.add("show");
+    }
+  } else if (currentScroll < lastScrollTop) {
+    if (scrollTopBtn.classList.contains("show")) {
+      scrollTopBtn.classList.remove("show");
+      scrollTopBtn.classList.add("hide");
+    }
+  }
+  lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+}
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+
+const elem = document.getElementById("dark");
+
+let scrollTopPositionX = scrollTop.getBoundingClientRect().x;
+let scrollTopPositionY = scrollTop.getBoundingClientRect().y;
+
+function findSection(scrollTopPositionX, scrollTopPositionY) {
+  let findElem = document.elementsFromPoint(
+    scrollTopPositionX,
+    scrollTopPositionY
+  );
+  if ((idDark = findElem.find((item) => item.id == "dark") != undefined)) {
+    scrollTopBtn.style.filter =
+      "brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(108%) contrast(103%)"; //white
+  } else {
+    scrollTopBtn.style.filter =
+      "invert(21%) sepia(97%) saturate(2455%) hue-rotate(216deg) brightness(96%) contrast(102%)"; //blue
+  }
+}
+
+window.addEventListener("scroll", () => {
+  let scrollTopPositionX = scrollTop.getBoundingClientRect().x;
+  let scrollTopPositionY = scrollTop.getBoundingClientRect().y;
+  findSection(scrollTopPositionX, scrollTopPositionY);
+});
+
+findSection(scrollTopPositionX, scrollTopPositionY);
+
+
+// Play audio upon pressing scrollTop
+
+const sound = new Audio("../media/aud/up.mp3");   
+sound.volume = 0.1; 
+document.getElementById('scrollTop').addEventListener('click', function() { 
+  sound.play();
+  });</script><style>#popup-container {
+    position: fixed;
+    top: 10%;
+    left: 85%;
+    width: 200px;      
+    padding: 10px;
+    background-color: #8c3e3e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: scale(0.7);
+    transition: all 0.8s ease-in-out;
+    z-index: 1000;
+    pointer-events: none; 
+}
+
+#popup-container.visible {
+    opacity: 1;
+    transform: scale(1);
+    pointer-events: auto;
+}
+
+
+#popup-container.show {
+    /* here we can but starting animation */
+}
+
+
+.popup-content p {
+    font-size: 18px; 
+    margin-top: 10px;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.close-btn {
+    float: right;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;      
+    
+}
+
+.close-btn:hover {
+  cursor: url(../media/img/_cur/cursor.gif), auto;
+}
+
+.hidden {
+    display: none !important;
+}</style><div class="hidden" id="popup-container"><div class="popup-content"><span class="close-btn">×</span><p>Do not forget to visit <a href="https://trackerninja.codeberg.page">Trackerninja website</a></p></div></div><script>document.addEventListener("DOMContentLoaded", function() {
+    const popupContainer = document.getElementById('popup-container');
+    const closeBtn = document.querySelector('.close-btn');
+
+    function showPopup() {
+
+        popupContainer.classList.remove('hidden');
+
+        setTimeout(() => {
+            popupContainer.classList.add('visible');
+        }, 64); 
+    }
+
+    function hidePopup() {
+        popupContainer.classList.remove('visible');
+        popupContainer.addEventListener('transitionend', () => {
+            popupContainer.classList.add('hidden');
+        }, { once: true });
+    }
+
+    closeBtn.addEventListener('click', () => {
+        hidePopup();
+    });
+
+    setTimeout(() => {
+        showPopup();
+      }, 18000);     
+});</script><style>#drag-wrapper {
+  position: absolute;
+  z-index: 8888;
+  background-color: rgba(200, 100, 100, 0.4);
+  border: 3px groove lime;
+  text-align: center;
+  padding: 10px;
+  transform: translate(70vw, 30vw);
+}
+
+#drag-header  {
+  padding: 10px;
+  cursor: move;
+  z-index: 10;
+  background-color: #143A95;
+  color: #fff;
+}</style><div id="drag-wrapper"><div id="drag-header">CLICK'N'DRAG TO MOVE</div><p>Whatever it takes to testbed!</p></div><script>// Make the DIV element draggable:
+dragElement(document.getElementById("drag-wrapper"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "drag-header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "drag-header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}</script><style>#popup-container-img {
+    position: fixed;
+    top: 40%;
+    left: 85%;
+    width: 100px;      
+    padding: 10px;
+    background-color: transparent;
+    border-radius: 50%; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    border: 0 !important;
+    outline: 0 !important;
+    transform: scale(0.7) rotate(48deg);
+    transition: all 0.4s ease-in-out;
+    z-index: 10000;
+    pointer-events: none; 
+}
+
+
+#popup-container-img.visible-img {
+    opacity: 1;
+    transform: scale(1) rotate(-8deg);
+    pointer-events: auto;
+}
+
+.popup-content-img  {
+    border: 0 !important;
+    outline: 0 !important;
+}
+
+.popup-content-img p {
+    font-size: 18px; 
+    margin-top: 10px;
+    color: white;
+    margin: 0;
+    text-align: center;
+}
+
+.close-btn-img {
+    float: right;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    font-size: 20px;      
+    
+}
+
+.close-btn-img:hover {
+    cursor: url(../media/img/_cur/cursor.gif), auto;
+}
+
+.hidden-img {
+    display: none !important;
+}
+
+.no-phones-ani {
+  transition: all 0.8s ease-in-out;
+}
+
+.no-phones-ani:hover {
+    box-shadow: 4px 4px 69px 16px rgba(255, 0, 123, 0.88) inset;
+    border-radius: 50%;
+    transition: all 0.6s ease-in-out;
+}
+
+#popup-container-img.hidden-img {
+    display: none;
+}</style><div class="hidden-img" id="popup-container-img"><div class="popup-content-img"><span class="close-btn-img"><img class="no-phones-ani" src="/media/img/no-phonesa6e3a9ce.png" alt="No phones please!"></span></div></div><script>document.addEventListener("DOMContentLoaded", function() {
+    const popupContainerImg = document.getElementById('popup-container-img');
+    const closeBtnImg = document.querySelector('.close-btn-img');
+
+    function showPopupImg() {
+        // remove hidden to animate
+        popupContainerImg.classList.remove('hidden-img');
+
+        // delayed addition of the class 
+        setTimeout(() => {
+            popupContainerImg.classList.add('visible-img');
+        }, 64); 
+    }
+
+    function hidePopupImg() {
+        // smooth removal 
+        popupContainerImg.classList.remove('visible-img');
+
+        // hiding after transition
+        popupContainerImg.addEventListener('transitionend', () => {
+            popupContainerImg.classList.add('hidden-img');
+        }, { once: true });
+    }
+
+    closeBtnImg.addEventListener('click', () => {
+        hidePopupImg();
+    });
+
+    setTimeout(() => {
+        showPopupImg();
+    }, 1000);     
+});
+
+
+//- Audio for no-smartphones
+
+const soundPhone = new Audio("../media/aud/enter.mp3");   
+soundPhone.volume = 0.1; 
+document.getElementById('popup-container-img').addEventListener('click', function() { 
+soundPhone.play();
+});</script></body><body class="chamelion"><div class="menu-side-overall-wrapper"><div class="menu-side-wrapper"><img class="side-pix" src="../../media/img/sidemenu/settings.gif"></div><div class="menu-side-projects-wrapper"><ul>CURRENT PROJECTS<li><a href="https://trackerninja.codeberg.page">RETRO PORTAL</a></li><li><a href="https://behance.net/retrowave88">GRAPHICS</a></li><li><a href="https://tiktok.com/spacedrone808">TRACKER MUSIC</a></li><li><a href="https://stock.adobe.com/contributor/204789995/spacedrone808">ADOBE STOCK</a></li><li><a href="https://freepik.com/author/spacedrone808">FREEPIK STOCK</a></li></ul></div></div><p class="to-do-title chamelion" style="color:red;">LARGE TODO LIST</p><ul class="to-do-list chamelion"><li>Modal window [2 types, already done in other project]</li><li>Print current body [already done in other project]</li><li>Infinite scroll element [have understanding how to implement]</li><li>Settings, tooltips, clear cache [transfer from dinning menu project]</li><li>Optimize code structure [separate css/js files]</li><li>Ramzi adaptive grid rules and other features</li><li>Mobile version?</li></ul></body></html><script>//- Dark theme 
+const storedTheme = localStorage.getItem('theme');
+if (storedTheme === 'dark') {
+    document.body.classList.add('dark');
+}
+
+document.getElementById('theme-toggle').addEventListener('click', () => {
+    if (document.body.classList.contains('dark')) {          
+        document.body.classList.remove('dark');
+        localStorage.setItem('theme', ''); // Clear saved Dark theme
+    } else {
+        
+        document.body.classList.add('dark');
+        localStorage.setItem('theme', 'dark'); 
+    }
+});
+
+
+//- Blocking mobile phones from showing content
+document.addEventListener('DOMContentLoaded', () => {
+    if (isNoMobilePage()) return; 
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+});
+
+function isNoMobilePage() {
+    return window.location.pathname === '/no-mobile.html'; 
+}
+
+function checkScreenSize() {
+    if (window.innerWidth < 1680 && !isNoMobilePage()) {
+        window.location.href = '/no-mobile.html';
+    }
+}
+
+//- Audio effects for menu hovering
+document.addEventListener('DOMContentLoaded', () => {
+    const audio1 = new Audio("../../media/aud/menu1.mp3");
+    const audio2 = new Audio("../../media/aud/menu2.mp3");
+
+        audio1.volume = 0.1;
+        audio2.volume = 0.1;
+
+    document.querySelectorAll('.menu-top-link').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (!audio1.paused || !audio1.currentTime === 0) return;
+            audio1.play();
+        });
+    });
+
+
+document.querySelectorAll('.menu-side-projects-wrapper li').forEach(item => {
+    item.addEventListener('mouseenter', function() {
+        if (!audio2.paused || !audio2.currentTime === 0) return;
+        audio2.play();
+        });
+    });
+});</script>

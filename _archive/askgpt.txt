@@ -1,0 +1,18 @@
+Imagine you are a very experienced web developer.
+Provide two solutions that show exactly how to solve this problem.
+
+You need to deploy a modern Webpack project that supports PUGs, has multiple mount points such as index1 and index2.
+Support SCSS. Correctly display JPG, Webp, SVG graphics. Support TXT and PDF formats. Support MP4 video.
+ package.json should contain such scripts:
+ 
+ ```
+“scripts”: {
+    “dev": ‘webpack --mode development’,
+    “build": ‘webpack --mode production’,
+    “watch": ‘webpack --mode development --watch’,
+    “serve": ‘webpack-dev-server --mode development --open’.
+  ```
+ 
+Output the package.json and webpack.config.js file settings.
+
+Translated with DeepL.com (free version)

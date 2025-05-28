@@ -1,0 +1,85 @@
+block variables 
+  - var nameTitle = '' // Page title
+  - var nameStyles = '' // Styles for testing 
+  //- - var pageName= '' // For pix inject 
+
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        link(rel="icon", href="/media/img/logo/square.png", sizes="48x48", type="image/png")
+        title #{nameTitle}
+
+    body
+
+        include ../menu/top
+        include ../menu/side
+        include ../menu/secondary
+        include ../menu/footer
+        include ../scrolltop
+        include ../popup
+        include ../draggable
+        include ../nophones
+
+    block main  
+
+script. 
+    //- Dark theme 
+    const storedTheme = localStorage.getItem('theme');
+    if (storedTheme === 'dark') {
+        document.body.classList.add('dark');
+    }
+
+    document.getElementById('theme-toggle').addEventListener('click', () => {
+        if (document.body.classList.contains('dark')) {          
+            document.body.classList.remove('dark');
+            localStorage.setItem('theme', ''); // Clear saved Dark theme
+        } else {
+            
+            document.body.classList.add('dark');
+            localStorage.setItem('theme', 'dark'); 
+        }
+    });
+
+
+    //- Blocking mobile phones from showing content
+    document.addEventListener('DOMContentLoaded', () => {
+        if (isNoMobilePage()) return; 
+        checkScreenSize();
+        window.addEventListener('resize', checkScreenSize);
+    });
+
+    function isNoMobilePage() {
+        return window.location.pathname === '/no-mobile.html'; 
+    }
+
+    function checkScreenSize() {
+        if (window.innerWidth < 1680 && !isNoMobilePage()) {
+            window.location.href = '/no-mobile.html';
+        }
+    }
+
+    //- Audio effects for menu hovering
+    document.addEventListener('DOMContentLoaded', () => {
+        const audio1 = new Audio("../../media/aud/menu1.mp3");
+        const audio2 = new Audio("../../media/aud/menu2.mp3");
+
+            audio1.volume = 0.1;
+            audio2.volume = 0.1;
+
+        document.querySelectorAll('.menu-top-link').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                if (!audio1.paused || !audio1.currentTime === 0) return;
+                audio1.play();
+            });
+        });
+
+
+    document.querySelectorAll('.menu-side-projects-wrapper li').forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            if (!audio2.paused || !audio2.currentTime === 0) return;
+            audio2.play();
+            });
+        });
+    });

@@ -1,0 +1,127 @@
+extends includes/_layout/layout
+block variables 
+  - var nameTitle = 'PUG/JS/PHP snippets'
+  
+block main
+  body.chamelion  
+    +sidemenu('snippets')
+    .page-wrapper.wrapper
+      .tools-intro Here you will find various snippets I use in web development. In almost all cases it is HTML/PUG/Javascript/PHP. Quite young section, so not so much stuff going on here, but will be updated in upcoming future for sure.
+
+      .batch-title SNIPPET TO SHOW CERTAIN WEBPAGE IF SCREEN WIDTH IS LESS THAN 
+      .crt-container
+        pre.crt-text.
+            document.addEventListener('DOMContentLoaded', () => {
+                if (isNoMobilePage()) return; 
+                checkScreenSize();
+                window.addEventListener('resize', checkScreenSize);
+            });
+
+            function isNoMobilePage() {
+                return window.location.pathname === '/no-mobile.html'; 
+            }
+
+            function checkScreenSize() {
+                if (window.innerWidth &lt; 1680 &amp;&amp; !isNoMobilePage()) {
+                    window.location.href = '/no-mobile.html';
+                }
+            }
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title BLOCKS ANY ZOOM ATTEMPTS COMING FROM TOUCH INTERFACE 
+      .crt-container
+        pre.crt-text.
+          &lt;meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"&gt;
+
+          document.addEventListener("touchmove", function(event){
+              event.preventDefault();
+          }, { passive: false });
+
+
+          window.addEventListener('gesturestart', function(e) {
+              e.preventDefault(); 
+          });
+
+          window.addEventListener('gesturechange', function(e) {
+              e.preventDefault(); 
+          });
+
+          window.addEventListener('contextmenu', function(e) {
+              e.preventDefault(); 
+          });
+
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title INJECT REPEATED MARKUP BLOCKS VIA JAVASCRIPT
+      .crt-container
+        pre.crt-text.
+
+          <div class="footer-container"></div>
+
+          document.addEventListener('DOMContentLoaded', function() {
+              fetch('./includes/footer.html')
+                  .then(response => response.text())
+                  .then(data => {
+                      document.querySelector('.').innerHTML = data;
+                  });
+          });
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESTRICT INPUT TO NUMERIC KEYS ONLY
+      .crt-container
+        pre.crt-text.
+          &lt;input class="selection__items-input selection__items-input--connect" type="tel" name="phone" id="phone" placeholder="8 (980) 980-60-94" required oninput="validateNumericInput(this)" pattern="[0-9]*" inputmode="numeric" maxlength="11"&gt;
+      
+
+          function validateNumericInput(input) {
+              input.value = input.value.replace(/[^0-9]/g, '');
+          }
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESET REFOX & SUPERMIUM CACHES
+      .crt-container
+        pre.crt-text.
+          @echo off
+          taskkill /IM chrome.exe /F >nul 2>&1 || echo Chrome is not running
+          taskkill /IM r3dfox.exe /F >nul 2>&1 || echo Firefox is not running
+          timeout /t 2 /nobreak >nul
+          rmdir /s /q "C:\Users\user\AppData\Local\Supermium\User Data\Default\Code Cache"
+          rmdir /s /q "C:\Users\user\AppData\Local\Supermium\User Data\Default\Cache"
+          start "" "C:\Program Files\Supermium\chrome.exe"
+
+          rmdir /s /q "C:\Users\user\AppData\Local\Eclipse Community\r3dfox\Profiles\na8ow4wf.default-default-1\cache2"
+          start "" "%ProgramFiles%\Eclipse Community\r3dfox\r3dfox.exe"
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESTARTS APACHE & POSTGRES SERVICES
+      .crt-container
+        pre.crt-text.
+          net stop "Apache2.4"
+          ping -n 2 localhost > nul
+          net stop "PostgreSQL 14"
+          ping -n 2 localhost > nul
+          net start "Apache2.4"
+          ping -n 2 localhost > nul
+          net start "PostgreSQL 14"
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title KILL VIRTUALBOX LEFTOVERS
+      .crt-container
+        pre.crt-text.
+          taskkill /im VirtualBox.exeVM /t /f
+          taskkill /im VirtualBox.exe /t /f
+          taskkill /im VBoxSDS.exe /t /f
+          taskkill /im VBoxSVC.exe /t /f
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title MORE SNIPPETS TO COME!
+      .crt-container
+        pre.crt-text.
+          HOLD YER HORSERS WEB SURFER, MORE SNIPPETS TO COME IN A WHILE!
+        button.copy-button(aria-label="Copy code to clipboard") Copy

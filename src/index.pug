@@ -1,0 +1,94 @@
+extends includes/_layout/layout
+
+block variables 
+  - var nameTitle = 'PixelCode snippets from TrackerNinja'
+
+block main
+  body.chamelion
+    .index-wrapper
+      +sidemenu('index')
+      #print-text.chamelion 
+        span.cursor(style="color: green;")
+      .cursor-pink.chamelion REC
+
+
+      button.collapsible(type="button") CLICK FOR SECRET INFO #1!
+      .collapsible-wrapper
+        p Website was made entirely in Windows 7 ESU x64. 
+      
+      br
+
+      button.collapsible(type="button") CLICK FOR SECRET INFO #2!
+      .collapsible-wrapper
+        p No frameworks, only pure code. 
+      
+      br
+
+
+      button.collapsible(type="button") CLICK FOR SECRET INFO #3!
+      .collapsible-wrapper
+        p Made in VS Code v1.100 + NodeJS v23.7.
+      
+      br
+
+
+      button.collapsible(type="button") CLICK FOR SECRET INFO #4!
+      .collapsible-wrapper
+        p Don't be lame, don't use Windows 10!
+      
+      br
+
+
+      p.tools-intro-lead.wrapper(style="color:red; text-decoration: underline dotted red; text-decoration-thickness: 2px;") I wish you satisfaction in what you do and have a nice day! 
+
+
+  script. 
+
+    const coll = document.getElementsByClassName('collapsible');
+    for (let i = 0; i < coll.length; i++) {
+      coll[i].addEventListener('click', function () {
+        this.classList.toggle('active');
+        const content = this.nextElementSibling;
+        content.classList.toggle('show');
+      });
+    }
+
+
+    document.addEventListener("DOMContentLoaded", function () {
+      const textContainer = document.querySelector('#print-text');
+      const placeholderText = "Welcome to the website dedicated to my various web development experiments, Websurfer. I created this project primarily to speed up my learning curve. Here, you can find the knowledge I accumulated during the learning process and apply it to your own website development. You may find something useful for yourself. Feel free to use any part of the code or borrow any element of the design. The resource is 100% copylefted. The project was designed with 80s/90s computer aesthetics in mind. I tried my best. If you are interested in the website or would like more detailed technical information about the technologies used head to the ABOUT section. In the same place you can contact me via the old-school email address."; 
+      let currentIndex = 0;
+
+      function typeNextCharacter() {
+        if (currentIndex < placeholderText.length) {
+          textContainer.innerHTML = `${placeholderText.substring(0, currentIndex++)}<span class="cursor">█</span>`;
+          setTimeout(typeNextCharacter, Math.random() * 30 + 5);
+        } else {
+          // cursor position after text entered
+          textContainer.innerHTML = `${placeholderText}<span class="cursor">█</span>`;
+        }
+      }
+
+      typeNextCharacter(); 
+    });
+
+
+
+    const container = document.getElementById('print-text');
+
+
+    function triggerBrokenTvEffect() {
+      const delay = Math.random() * 8000 + 2000;
+      setTimeout(() => {
+        container.classList.add('broken-tv'); 
+        
+        
+        setTimeout(() => {
+          container.classList.remove('broken-tv');
+          
+          triggerBrokenTvEffect(); 
+        }, 300);
+      }, delay);
+    }
+
+    triggerBrokenTvEffect();

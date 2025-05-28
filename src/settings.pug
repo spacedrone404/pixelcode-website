@@ -1,0 +1,38 @@
+extends includes/_layout/layout
+block variables 
+  - var nameTitle = 'Settings & ToDo list'
+  
+  style.  
+    .to-do-list {
+      flex-direction: column;
+      justify-content: center;
+      align-items: start;
+      width: 600px;
+    }
+    .to-do-title {
+      display: flex;
+      justify-content: center;
+      font-size: 28px;
+      font-family: "BlueTerminal"
+      }
+    .to-do-list li {
+      margin-bottom: -30px;
+      list-style: disc;
+      text-align: left;
+      
+    }
+block main
+  body.chamelion
+    +sidemenu('settings')
+
+    p(style="color:red;" class="to-do-title").chamelion LARGE TODO LIST 
+    ul.to-do-list.chamelion      
+      li Modal window [2 types, already done in other project]
+      li Print current body [already done in other project]
+      li Infinite scroll element [have understanding how to implement]
+
+      li Settings, tooltips, clear cache [transfer from dinning menu project]      
+      li Optimize code structure [separate css/js files]  
+      li Ramzi adaptive grid rules and other features
+      li Mobile version?
+

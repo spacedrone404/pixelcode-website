@@ -1,0 +1,12 @@
+<input class="selection__items-input selection__items-input--connect" type="tel" name="phone" id="phone" placeholder="8 (960) 900-60-90" required oninput="validateNumericInput(this)" pattern="[0-9]*" inputmode="numeric" maxlength="11">
+
+
+    <script>
+
+
+        function validateNumericInput(input) {
+
+            input.value = input.value.replace(/[^0-9]/g, '');
+        }
+
+    </script>

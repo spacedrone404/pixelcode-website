@@ -1,0 +1,111 @@
+style. 
+  #scrollTop {
+    position: fixed;
+    bottom: 140px;
+    left: 90px;
+    z-index: 10000;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    font-size: 22px;
+    font-weight: 700;
+    width: 54px;
+    height: 54px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.6s ease-in-out, scale 0.4s ease-in-out;
+    scale: 100%;
+  }
+
+  #scrollTop:hover {
+    border-radius: 50%;
+    transition: all 1.8s ease-in-out, scale 0.4s ease-in-out;
+    scale: 108%;
+  }
+
+  #scrollTop.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  #scrollTop.hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .scroll-arrow {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(108%) contrast(103%);
+  }
+
+
+button#scrollTop(onclick="topFunction()" title="To top")
+  img(class="scroll-arrow" src=require("../media/svg/scrollup.svg"), alt="To Top")
+
+
+script. 
+  window.topFunction = topFunction;
+
+  let lastScrollTop = 0;
+  let scrollTopBtn = document.getElementById("scrollTop");
+
+  window.onscroll = function () {
+    scrollFunction();
+  };
+  function scrollFunction() {
+    let currentScroll = window.scrollY || document.documentElement.scrollTop;
+    if (currentScroll > 512) {
+      if (!scrollTopBtn.classList.contains("show")) {
+        scrollTopBtn.classList.remove("hide");
+        scrollTopBtn.classList.add("show");
+      }
+    } else if (currentScroll < lastScrollTop) {
+      if (scrollTopBtn.classList.contains("show")) {
+        scrollTopBtn.classList.remove("show");
+        scrollTopBtn.classList.add("hide");
+      }
+    }
+    lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+  }
+
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
+
+  const elem = document.getElementById("dark");
+
+  let scrollTopPositionX = scrollTop.getBoundingClientRect().x;
+  let scrollTopPositionY = scrollTop.getBoundingClientRect().y;
+
+  function findSection(scrollTopPositionX, scrollTopPositionY) {
+    let findElem = document.elementsFromPoint(
+      scrollTopPositionX,
+      scrollTopPositionY
+    );
+    if ((idDark = findElem.find((item) => item.id == "dark") != undefined)) {
+      scrollTopBtn.style.filter =
+        "brightness(0) saturate(100%) invert(100%) sepia(100%) saturate(0%) hue-rotate(151deg) brightness(108%) contrast(103%)"; //white
+    } else {
+      scrollTopBtn.style.filter =
+        "invert(21%) sepia(97%) saturate(2455%) hue-rotate(216deg) brightness(96%) contrast(102%)"; //blue
+    }
+  }
+
+  window.addEventListener("scroll", () => {
+    let scrollTopPositionX = scrollTop.getBoundingClientRect().x;
+    let scrollTopPositionY = scrollTop.getBoundingClientRect().y;
+    findSection(scrollTopPositionX, scrollTopPositionY);
+  });
+
+  findSection(scrollTopPositionX, scrollTopPositionY);
+
+
+  // Play audio upon pressing scrollTop
+
+  const sound = new Audio("../media/aud/up.mp3");   
+  sound.volume = 0.1; 
+  document.getElementById('scrollTop').addEventListener('click', function() { 
+    sound.play();
+    });

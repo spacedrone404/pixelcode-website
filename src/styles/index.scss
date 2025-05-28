@@ -1,0 +1,173 @@
+@use "../styles/main" as *;
+
+/* 
+As of 2025 the most popular 
+desktop resolutions are: 1920x1080, 1366x768, 1536x864
+mobile resolutions are: 360x800, 390x844, 1080x2400 (hi-end models) 
+ */
+
+/* Chameleon media queries */
+
+/* improving popular container solution
+.container {
+width: 90%
+margin: 0 auto;
+}
+*/
+
+.chamelion {
+  max-width: 1536px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  outline: 2px rgb(255, 124, 2) solid;
+}
+
+.wrapper {
+  max-width: 1600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 2xl */
+@media (max-width: 1536px) {
+  .chamelion {
+    max-width: 1280px;
+  }
+}
+
+/* xl */
+@media (max-width: 1280px) {
+  .chamelion {
+    max-width: 1024px;
+  }
+}
+
+/* lg */
+@media (max-width: 1024px) {
+  .chamelion {
+    max-width: 768px;
+  }
+}
+
+/* md */
+@media (max-width: 768px) {
+  .chamelion {
+    max-width: 640px;
+  }
+}
+
+/* sm */
+@media (max-width: 640px) {
+  .chamelion {
+    max-width: 475px;
+  }
+}
+
+/* xs */
+@media (max-width: 475px) {
+  .chamelion {
+    width: 100%;
+  }
+}
+
+// Cursor implementation
+*,
+body,
+::-webkit-scrollbar,
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited {
+  cursor: url(../media/img/_cur/cursor.gif), auto;
+}
+
+
+/* Mobile firest chamelion */
+
+// .chamelion {
+//   width: 100%;
+//   margin-left: auto;
+//   margin-right: auto;
+//   padding-left: 0.5rem;
+//   padding-right: 0.5rem;
+// }
+
+// /* xs */
+// @media (min-width: 475px) {
+//   .chamelion {
+//     max-width: 475px;
+//   }
+// }
+
+// /* sm */
+// @media (min-width: 640px) {
+//   .chamelion {
+//     max-width: 640px;
+//   }
+// }
+
+// /* md */
+// @media (min-width: 768px) {
+//   .chamelion {
+//     max-width: 768px;
+//   }
+// }
+
+// /* lg */
+// @media (min-width: 1024px) {
+//   .chamelion {
+//     max-width: 1024px;
+//   }
+// }
+
+// /* xl */
+// @media (min-width: 1280px) {
+//   .chamelion {
+//     max-width: 1280px;
+//   }
+// }
+
+// /* 2xl */
+// @media (min-width: 1536px) {
+//   .chamelion {
+//     max-width: 1536px;
+//   }
+// }
+
+
+
+/* Common media queries */
+
+// @media (max-width: 320px) {
+// }
+
+// @media (max-width: 480px) {
+// }
+
+// @media (max-width: 576px) {
+// }
+
+// @media (max-width: 768px) {
+// }
+
+// @media (max-width: 1024px) {
+// }
+
+// @media (max-width: 1280px) {
+// }
+
+// @media (max-width: 1366px) {
+// }
+
+// @media (max-width: 1440px) {
+// }
+
+// @media (max-width: 1600px) {
+// }
+
+// @media (max-width: 1920px) {
+// }

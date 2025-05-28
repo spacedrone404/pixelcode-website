@@ -1,0 +1,194 @@
+.collapsible {
+  color: #c41111;
+
+  padding: 18px;
+  width: 39.9%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 20px;
+  margin: 0 auto;
+  display: flex;
+  text-transform: uppercase;
+  justify-content: center;
+}
+
+
+.active,
+.collapsible:hover {
+  background-color: #ffffff;
+}
+
+.collapsible-wrapper {
+  height: 0;
+  transform: translateY(-100%);
+  opacity: 0;
+  transition: all 0.5s cubic-bezier(.4, 0, .2, 1);
+  padding: 0 18px;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.collapsible-wrapper.show {
+  height: auto;
+  transform: translateY(0);
+  opacity: 1;
+  width: 39.9%;
+  margin: 0 auto;
+  padding: 18px;
+  border: red 4px groove;
+}
+
+.collapsible-wrapper p {
+  text-align: center;
+}
+
+.about-index {
+  width: fit-content;
+  margin: 0 auto;
+  text-transform: uppercase;
+  font-weight: 900;
+
+}
+
+.index-wrapper {
+  height: 60vw;
+}
+
+#print-text {
+  width: 800px;
+  height: 180px;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  padding: 30px;
+  color: #06e906;
+  border: 14px solid #06e906;
+  border-radius: 20px;
+  position: relative;
+  text-shadow: 0 0 5px #0f0;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  transition: box-shadow 0.4s ease-in-out;
+}
+
+
+#print-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.1) 0,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 4px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+
+#print-text::after {
+  content: "░▒▓█ ROBOTRON 1984 █▓▒░";
+  font-family: "BlueTerminal";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.88);
+  image-rendering: pixelated;
+  transform: scale(2);
+  font-size: 10px;
+  pointer-events: none;
+
+
+}
+
+#print-text.broken-tv::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+  pointer-events: none;
+  animation: flicker 0.3s ease-in-out;
+}
+
+#print-text.broken-tv {
+  animation: scanline-shift 0.3s ease-in-out;
+}
+
+#print-text:hover {
+  box-shadow: 0 0 40px rgba(0, 255, 0, 1);
+  cursor: url(../../media/img/_cur/cursor.gif), auto;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes scanline-shift {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.tools-intro-lead:hover {
+  color: white !important;
+  transition: all 0.8s ease-in !important;
+}
+
+.cursor-pink {
+  display: inline-block;
+  position: fixed;
+  width: 30px;
+  height: 20px;
+  background-color: red;
+
+  margin-left: 2px;
+  vertical-align: bottom;
+  animation: blink-pink 2s step-start infinite;
+  z-index: 10000;
+}
+
+
+@keyframes blink-pink {
+  50% {
+    opacity: 0;
+    box-shadow: 4px 4px 29px 0px rgba(255, 0, 191, 0.99);
+  }
+}
+
+
+
+.cursor {
+  display: inline-block;
+  vertical-align: middle;
+  animation: terminal-blink 1s step-end infinite alternate;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@keyframes terminal-blink {
+  50% {
+    opacity: 0;
+    box-shadow: 4px 4px 29px 0px rgba(255, 0, 191, 0.99);
+  }
+}

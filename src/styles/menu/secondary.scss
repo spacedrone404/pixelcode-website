@@ -1,0 +1,26 @@
+.menu-secondary-wrapper {
+  display: flex;
+  position: fixed;
+  bottom: 10%;
+  z-index: 1000;
+}
+
+.menu-secondary-wrapper ul {
+  position: fixed;
+  width: 100%;
+  justify-content: center;
+  background: #020024;
+  background: linear-gradient(269deg,
+      rgba(2, 0, 36, 1) 0%,
+      rgba(9, 9, 121, 1) 27%,
+      rgba(0, 212, 255, 1) 100%);
+  padding: 0;
+  margin: 0;
+  height: 35px;
+}
+
+.menu-secondary-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

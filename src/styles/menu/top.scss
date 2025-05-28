@@ -1,0 +1,76 @@
+.menu-top-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+ul {
+  display: flex;
+  gap: 50px;
+}
+
+li {
+  list-style: none;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 40px;
+}
+
+.logo img {
+  width: 54px;
+  border-radius: 50%;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.title p {
+  font-family: "BlueTerminal";
+  font-size: 30px;
+  margin: 0;
+}
+
+
+.title-style {
+  font-family: monospace;
+  padding: 1rem;
+  font-size: 18px;
+  position: relative;
+  text-align: center;
+  animation: glitch-shake 4s infinite linear,
+    glowing 3s infinite alternate-reverse;
+
+  text-shadow:
+    -1.4px -1.8px 0 #ff0000,
+    1.5px 2px 0 #0000ff;
+  transform-origin: center;
+
+}
+
+.menu-top-link {
+  width: 100px;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+#theme-toggle {
+  transition: all 0.3s ease-in-out;
+}
+
+#theme-toggle:hover {
+  outline: 4px solid red;
+  border-radius: 50%;
+  transition: all 0.3s ease-in-out;
+
+}

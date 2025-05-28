@@ -1,0 +1,162 @@
+/* Scanline TV emulation for code snippets */
+
+.crt-container {
+  position: relative;
+  max-width: 748px;
+  padding: 15px;
+  margin: 20px auto;
+  background: #000;
+  border: 14px solid rgba(125, 255, 71, 0.88);
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  overflow: hidden;
+  font-family: "BlueTerminal";
+  transition: box-shadow 0.4s ease-in-out;
+  margin-bottom: 3em;
+}
+
+.crt-container:hover,
+.copy-button:hover {
+  box-shadow: 0 0 40px rgba(0, 255, 0, 1);
+  cursor: url(../media/img/_cur/cursor.gif), auto;
+}
+
+.crt-container::after {
+  content: "░▒▓█ ROBOTRON 1984 █▓▒░";
+  font-family: "BlueTerminal";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.88);
+  image-rendering: pixelated;
+  transform: scale(2);
+  font-size: 10px;
+  pointer-events: none;
+}
+
+.crt-container.broken-tv::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 3;
+  pointer-events: none;
+  animation: flicker 0.3s ease-in-out;
+}
+
+.crt-container.broken-tv .crt-text {
+  animation: scanline-shift 0.3s ease-in-out;
+}
+
+@keyframes flicker {
+
+  0%,
+  100% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 0.9;
+  }
+}
+
+@keyframes scanline-shift {
+
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+
+  50% {
+    transform: translateX(5px);
+  }
+}
+
+.crt-text {
+  position: relative;
+  padding: 20px;
+  color: #0f0;
+  font-size: 16px;
+  border: 4px solid green;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+  background: transparent;
+  text-shadow: 0 0 5px #0f0;
+  z-index: 1;
+  font-family: "BlueTerminal";
+  max-width: 748px;
+}
+
+.crt-text::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(to bottom,
+      rgba(0, 0, 0, 0.1) 0,
+      rgba(0, 0, 0, 0.1) 2px,
+      transparent 2px,
+      transparent 4px);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.copy-button {
+  position: absolute;
+  top: 10px;
+  right: 50px;
+  background: #333;
+  color: #0f0;
+  border: 2px solid #0f0;
+  padding: 8px 12px;
+  font-family: "Courier New", monospace;
+  cursor: pointer;
+  z-index: 3;
+  transition: background 0.2s;
+  width: 80px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1),
+      transparent,
+      transparent,
+      rgba(255, 255, 255, 0.1));
+  background-size: 100% 4px;
+  animation: scanlines 1s infinite alternate-reverse;
+  font-family: "BlueTerminal";
+}
+
+@keyframes scanlines {
+  from {
+    transform: translateY(-1px);
+  }
+
+  to {
+    transform: translateY(2px);
+  }
+}
+
+.copy-button:hover {
+  background: #0f0;
+  color: #000;
+}
+
+.copy-button:focus {
+  outline: 2px solid #0f0;
+  outline-offset: 2px;
+}
+
+.batch-title {
+  justify-content: center;
+  display: flex;
+  font-family: "BlueTerminal";
+  font-size: 1.6em;
+  margin: 1em;
+  width: 40%;
+  margin: 0 auto;
+  text-align: center;
+}

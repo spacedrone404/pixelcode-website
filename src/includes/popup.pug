@@ -1,0 +1,90 @@
+style. 
+  #popup-container {
+      position: fixed;
+      top: 10%;
+      left: 85%;
+      width: 200px;      
+      padding: 10px;
+      background-color: #8c3e3e;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+      transform: scale(0.7);
+      transition: all 0.8s ease-in-out;
+      z-index: 1000;
+      pointer-events: none; 
+  }
+
+  #popup-container.visible {
+      opacity: 1;
+      transform: scale(1);
+      pointer-events: auto;
+  }
+
+
+  #popup-container.show {
+      /* here we can but starting animation */
+  }
+
+
+  .popup-content p {
+      font-size: 18px; 
+      margin-top: 10px;
+      color: white;
+      margin: 0;
+      text-align: center;
+  }
+
+  .close-btn {
+      float: right;
+      cursor: pointer;
+      color: white;
+      font-weight: bold;
+      font-size: 20px;      
+      
+  }
+
+  .close-btn:hover {
+    cursor: url(../media/img/_cur/cursor.gif), auto;
+  }
+
+  .hidden {
+      display: none !important;
+  }
+
+#popup-container.hidden
+  .popup-content
+    span.close-btn ×
+    p Do not forget to visit 
+      a(href="https://trackerninja.codeberg.page") Trackerninja website
+
+
+script. 
+
+  document.addEventListener("DOMContentLoaded", function() {
+      const popupContainer = document.getElementById('popup-container');
+      const closeBtn = document.querySelector('.close-btn');
+
+      function showPopup() {
+
+          popupContainer.classList.remove('hidden');
+
+          setTimeout(() => {
+              popupContainer.classList.add('visible');
+          }, 64); 
+      }
+
+      function hidePopup() {
+          popupContainer.classList.remove('visible');
+          popupContainer.addEventListener('transitionend', () => {
+              popupContainer.classList.add('hidden');
+          }, { once: true });
+      }
+
+      closeBtn.addEventListener('click', () => {
+          hidePopup();
+      });
+
+      setTimeout(() => {
+          showPopup();
+        }, 18000);     
+  });

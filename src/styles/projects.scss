@@ -1,0 +1,83 @@
+.curved-box-menu,
+.curved-box-vote,
+.curved-box-misc {
+  position: relative;
+  width: 600px;
+  height: 55px;
+  background-color: lime;
+  font-family: "BlueTerminal";
+}
+
+.curved-box-menu,
+.curved-box-misc {
+  clip-path: polygon(0 72%, 100% 59%, 100% 100%, 0 100%);
+}
+
+.curved-box-menu::after {
+  content: "ON SCREEN DINING MENU";
+  position: absolute;
+  font-family: "BlueTerminal";
+  color: white;
+  bottom: 5px;
+  transform: translateX(-50%);
+  font-size: 21px;
+  transform: translateX(293px) translateY(2px) rotate(0deg);
+}
+
+.curved-box-vote {
+  clip-path: polygon(0 65%, 100% 75%, 100% 100%, 0 100%);
+}
+
+.curved-box-vote::after {
+  content: "SIMPLE VOTING SYSTEM";
+  position: absolute;
+  font-family: "BlueTerminal";
+  color: white;
+  bottom: 5px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-size: 21px;
+  transform: translateX(26px) translateY(2px) rotate(1deg);
+}
+
+.curved-box-misc::after {
+  content: "SCSS/JS EVENTS TIMELINE";
+  position: absolute;
+  font-family: "BlueTerminal";
+  color: white;
+  bottom: 5px;
+  transform: translateX(-50%);
+  z-index: 1000;
+  font-size: 21px;
+  transform: translateX(163px) translateY(2px) rotate(0deg);
+}
+
+.project-benefits {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  align-items: start;
+  width: 600px;
+  margin: 0 auto;
+  margin-top: 20px;
+}
+
+.title-project-style {
+  font-family: monospace;
+  padding: 1rem;
+  font-size: 18px;
+  position: relative;
+  text-align: center;
+  animation: glitch-shake 18s infinite linear;
+  transform-origin: center;
+}
+
+.project-benefits li {
+  text-align: left;
+  list-style: disc;
+}
+
+.project-link {
+  margin-top: 10px;
+}

@@ -1,0 +1,68 @@
+﻿_WEBPRJ
+
+
+global
+
+	food
+	hugo-hacker-testbed
+	trackeninja
+	vote
+
+snippets
+	glowing-blackhole
+	mobile-menu-1
+	mobile-menu-2
+	new-year-top-blobs
+	picture-hover-zoomer
+	stars-fast
+	timeline
+	varitone-adv
+
+
+backup
+  adb
+	COPY-FROM-OPPO.cmd
+	COPY-TO-OPPO.cmd
+  usb-transfer
+	4analyze-from.cmd
+	4analyze-to.cmd
+	4analyze.cmd
+
+prj-backup.cmd
+usb-cloner-2000.bat
+
+stocks
+	EXIF-SP808.cmd
+	KILL-$FLOW.cmd
+	MOVE-4-TAG.bat
+	MOVE-4-UPLOAD.bat
+	MOVE-RAW.cmd
+	MOVE-TO-ARCHIVE.cmd
+
+system
+aero
+  AERO-RESTART.cmd
+  AERO-START.cmd
+lan
+  NETWORK-DISABLE.cmd
+  NETWORK-ENABLE.cmd
+  NETWORK-IP-RESET.cmd
+sidebar
+  SIDEBAR-RESTART.cmd
+  SIDEBAR-START.cmd
+
+	!flash-del-andr.cmd
+	AUDIO-RESTART.cmd
+	kill-vbox.cmd
+	restart.cmd
+	shutdown.cmd
+	TIME-RESYNC.cmd
+
+webdev
+ snippets
+	block-zoom-js.txt
+	inject-includes-via-js.txt
+	limit-to-numbers.txt 
+ clean-chr.cmd
+ clean-ff.cmd
+ httpsql.cmd

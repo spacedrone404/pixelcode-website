@@ -1,0 +1,52 @@
+//- mixin to insert different pix on different pages 
+mixin sidemenu(page) 
+  .menu-side-overall-wrapper
+    .menu-side-wrapper 
+      //- img(src=require("../../media/img/beavis-cpu.gif"), class="side-pix", width="178", alt="Side picture")
+      if page === 'index' 
+        img(src="../../media/img/sidemenu/index.gif" class="side-pix")
+      else if page === 'projects'
+        img(src="../../media/img/sidemenu/code.gif" class="side-pix")
+      else if page === 'snippets'
+        img(src="../../media/img/sidemenu/code.gif" class="side-pix")
+      else if page === 'backup'
+        img(src="../../media/img/sidemenu/backup.gif" class="side-pix")
+      else if page === 'batches'
+        img(src="../../media/img/sidemenu/batches.gif" class="side-pix")
+      else if page === 'settings'
+        img(src="../../media/img/sidemenu/settings.gif" class="side-pix")
+      else if page === 'about'
+        img(src="../../media/img/sidemenu/index.gif" class="side-pix")
+
+            
+      //- img(src="https://placehold.co/178x330", class="side-pix", alt="Side picture")
+      //- ul TESTBED MENU
+      //-   li 
+      //-     a(href="index.html") INDEX PAGE 
+
+      //-   li
+      //-     a(href="output1.html") OUTPUTPAGE 1 
+
+      //-   li 
+      //-     a(href="output2.html") OUTPUTPAGE 2
+
+      //-   li 
+      //-     a(href="todo.html") THINGS TODO
+
+      //-   li 
+      //-     a(href="testbed1.html") TESTBED 1
+
+      //-   li 
+      //-     a(href="testbed2.html") TESTBED 2
+    .menu-side-projects-wrapper        
+      ul CURRENT PROJECTS
+        li
+          a(href="https://trackerninja.codeberg.page") RETRO PORTAL
+        li 
+          a(href="https://behance.net/retrowave88") GRAPHICS
+        li 
+          a(href="https://tiktok.com/spacedrone808") TRACKER MUSIC
+        li 
+          a(href="https://stock.adobe.com/contributor/204789995/spacedrone808") ADOBE STOCK 
+        li 
+          a(href="https://freepik.com/author/spacedrone808") FREEPIK STOCK

@@ -1,0 +1,34 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    title Testbed page 2
+  style. 
+    .media-wrapper {
+      display: flex;
+      width: 1600px;
+      margin: 0 auto;
+      justify-content: center;
+      gap: 30px;
+
+    }
+
+  body.chamelion
+    include includes/menu/top
+    include includes/menu/secondary
+    include includes/menu/side
+
+  .page-wrapper
+    p(style="color: red;") Testbed page 2
+
+  .media-wrapper
+    //- video(width='320', height='240', controls='')
+      source(src=require("./media/vid/samplevid.mp4") type="video/mp4")
+
+    //- audio(controls='')
+      source(src=require("./media/aud/copy.mp3") type="audio/mp3")
+
+    
+
+  //- script. 

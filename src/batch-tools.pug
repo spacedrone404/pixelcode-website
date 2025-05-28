@@ -1,0 +1,167 @@
+extends includes/_layout/layout
+block variables 
+  - var nameTitle = 'Various batch scripts'
+  
+block main
+  body.chamelion  
+    +sidemenu('batches')
+
+    .page-wrapper.wrapper
+      .tools-intro Here you will find misc automations that I use almost every day. Most of them are Batch and Powershell scripts. Note that all stuff is 100% Windows 7 compatible. Have fun with it!
+
+      .batch-title SIMPLE TIME RESYNC
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          w32tm /resync
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title PLAIN CPU SHUTDOWN
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          C:\Windows\System32\shutdown -s -t 0
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title PURGE TEMP FOLDER & CPU SHUTDOWN
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          @echo off
+          echo Cleaning up temporary files in %TEMP% folder...
+          echo.
+
+          set "tempfolder=%TEMP%"
+
+          cd /d "%tempfolder%"
+
+          :: Delete all files and folders in TEMP (including read-only and hidden)
+          del /q /f /s *.* >nul 2>&1
+          for /d %%x in (*) do rd /s /q "%%x" >nul 2>&1
+
+          echo.
+          echo Temporary files deleted successfully.
+          echo Initiating system shutdown...
+
+          shutdown /s /t 0
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title PLAIN CPU RESTART
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          C:\Windows\System32\shutdown -r -t 0
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESTART AUDIO SERVICE
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          net stop "AudioSrv"
+          net start "AudioSrv"
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title START WINDOWS GADGET SIDEBAR
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          start "sidebar" sidebar.exe
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESTART WINDOWS GADGET SIDEBAR
+      .crt-container(style="width: 512px;")
+        pre.crt-text.
+          taskkill /IM sidebar.exe /f
+          ping -n 4 localhost > nul
+          start "sidebar" sidebar.exe
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title DISABLE LAN INTERFACE
+      .crt-container
+        pre.crt-text.
+          netsh interface set interface name="Local Area Connection" admin=disabled
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title ENABLE LAN INTERFACE
+      .crt-container
+        pre.crt-text.
+          netsh interface set interface name="Local Area Connection" admin=enabled
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESET LAN INTERFACE 
+      .crt-container
+        pre.crt-text.
+          netsh interface ipv4 set address name="Local Area Connection" source=dhcp
+
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title START AERO THEME
+      .crt-container
+        pre.crt-text.
+          sc start Themes
+          net start uxsms
+          start C:\Windows\Resources\Themes\aero.theme
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title RESTART AERO THEME
+      .crt-container
+        pre.crt-text.
+          sc stop Themes
+          net stop uxsms
+
+          sc start Themes
+          net start uxsms
+          start C:\Windows\Resources\Themes\aero.theme
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title SAFELY TERMINATES CERTAIN PROCESSES
+      .crt-container
+        pre.crt-text.
+          taskkill /F /IM "xnviewmp.exe"
+          taskkill /F /IM "CaptureOne.exe"
+          taskkill /F /IM "ImgCoreProcess.exe"
+          taskkill /F /IM "CODiagnosticsService.exe"
+          taskkill /F /IM "Xpiks.exe"
+          taskkill /F /IM "photo.exe"
+          taskkill /F /IM "Topaz DeNoise AI.exe"
+          taskkill /F /IM "PhotomatixPro.exe"
+          taskkill /F /IM "vegas210.exe"
+          taskkill /F /IM "ErrorReportLauncher.exe"
+          taskkill /F /IM "rawtherapee.exe"
+          taskkill /F /IM "filezilla.exe"
+
+          wmic process where name="xnviewmp.exe" call terminate
+          wmic process where name="CaptureOne.exe" call terminate
+          wmic process where name="ImgCoreProcess.exe" call terminate
+          wmic process where name="CODiagnosticsService.exe" call terminate
+          wmic process where name="Xpiks.exe" call terminate
+          wmic process where name="photo.exe" call terminate
+          wmic process where name="Topaz DeNoise AI.exe" call terminate
+          wmic process where name="PhotomatixPro.exe" call terminate
+          wmic process where name="vegas210.exe" call terminate
+          wmic process where name="ErrorReportLauncher.exe" call terminate
+          wmic process where name="filezilla.exe" call terminate
+          wmic process where name="rawtherapee.exe" call terminate
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title EMBEDDING METADA TO A PICTURES IN A CERTAIN FOLDER
+      .crt-container
+        pre.crt-text.
+          c:\exiftool.exe -overwrite_original -all= C:\Users\user\Desktop\4STOCK\DENOISED
+
+          ping -n 4 localhost > nul
+
+          c:\exiftool.exe -overwrite_original -XMP-iptcCore:CreatorWorkEmail="demo@demo.org" -artist="user" -copyright="user" -Credit="user" -Source="user" -sep ", " -keywords="background, backdrop, postcard, design, element, wallpaper, dramatic, concept, decoration, scene, vivid, vibrant, travel, trip,"  C:\Users\user\Desktop\4STOCK\DENOISED\
+          exit
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+      .batch-title MORE SNIPPETS TO COME!
+      .crt-container
+        pre.crt-text.
+          HOLD YER HORSERS WEB SURFER, MORE SNIPPETS TO COME IN A WHILE!
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
+  //- script. 

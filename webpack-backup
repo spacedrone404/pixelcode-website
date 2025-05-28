@@ -1,0 +1,104 @@
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+
+module.exports = {
+  // Multiple entry points for mount points
+  entry: {
+    index1: "./src/index1.js",
+    index2: "./src/index2.js",
+  },
+  // Output configuration
+  output: {
+    path: path.resolve(__dirname, "dist"),
+    filename: "[name].bundle.js",
+  },
+  module: {
+    rules: [
+      // JavaScript processing with Babel
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"],
+          },
+        },
+      },
+      // SCSS compilation and extraction
+      {
+        test: /\.scss$/,
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
+      },
+      // Image handling (JPG, WebP, SVG, etc.)
+      {
+        test: /\.(jpg|jpeg|png|gif|svg|webp)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "images/",
+            },
+          },
+        ],
+      },
+      // Document handling (TXT, PDF)
+      {
+        test: /\.(txt|pdf)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "assets/",
+            },
+          },
+        ],
+      },
+      // Video handling (MP4)
+      {
+        test: /\.mp4$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              name: "[name].[ext]",
+              outputPath: "videos/",
+            },
+          },
+        ],
+      },
+      // PUG processing (optional rule for imports in JS)
+      {
+        test: /\.pug$/,
+        use: "pug-loader",
+      },
+    ],
+  },
+  plugins: [
+    // Extract CSS into separate files
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+    }),
+    // Generate index1.html from PUG
+    new HtmlWebpackPlugin({
+      template: "pug-loader!./src/index1.pug",
+      filename: "index1.html",
+      chunks: ["index1"],
+    }),
+    // Generate index2.html from PUG
+    new HtmlWebpackPlugin({
+      template: "pug-loader!./src/index2.pug",
+      filename: "index2.html",
+      chunks: ["index2"],
+    }),
+  ],
+  // Development server configuration
+  devServer: {
+    contentBase: path.join(__dirname, "dist"),
+    compress: true,
+    port: 9000,
+  },
+};
