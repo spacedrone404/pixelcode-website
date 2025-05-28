@@ -83,7 +83,7 @@ module.exports = {
         test: /\.(jpg|jpeg|png|gif|svg|webp)$/i,
         type: "asset/resource",
         generator: {
-          filename: "media/img/[name][contenthash:8][ext]",
+          filename: "media/img/[name][ext]",
         },
       },
       // Audio support
