@@ -241,20 +241,14 @@ module.exports = {
         {
           from: "src/media/img",
           to: "media/img",
-          filter: (resourcePath) => {
-            // Copy only specific image formats
-            const ext = path.extname(resourcePath).toLowerCase();
-            return [".gif", ".png", ".jpg", ".jpeg", ".webp", ".svg"].includes(
-              ext
-            );
-          },
+          // No filter needed - asset module handles processing
+          noErrorOnMissing: true,
         },
         {
           from: "src/media/docs",
           to: "media/docs",
           noErrorOnMissing: true,
         },
-        // Add fonts copy pattern
         {
           from: "src/fonts",
           to: "fonts",
