@@ -92,7 +92,7 @@ module.exports = {
         test: /\.(mp3)$/,
         type: "asset/resource",
         generator: {
-          filename: "media/aud/[name][contenthash:8][ext]",
+          filename: "media/aud/[name][ext]",
         },
       },
       // Font support
