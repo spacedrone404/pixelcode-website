@@ -1,8 +1,13 @@
-PixelCode web snippets website for desktop computers.
+PixelCdode is a website for desktop computers that provides web development snippets, primarily for personal use.  
 
-Webpack/NodeJs 23.7/PUG/SCSS/JS. Windows 7 x64 ESU.
+The following technologies were used to build this testbed project:  
+Markup: HTML/PUG  
+Styles: CSS/SCSS  
+Logic: JavaScript  
+Enviroment: WebPack 5.99/NodeJS 23.7  
+Code Editor: Codium v1.100  
+Operating System: Windows 7 x64 ESU  
 
 
-PS Left hand side GIFs are injected by means of PUG mixins and not displayed after deploy, although they are fine in productron "npm run serve". To be resolved. 
-UPD Resolved, but now there is no audio for some reason, gotta fix it.
+
 
