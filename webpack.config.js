@@ -47,8 +47,8 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].bundle.js",
-    // publicPath: "/",
-    publicPath: "./",
+    // publicPath: "/", // local dev
+    publicPath: "./", // remote deploy
     clean: true,
   },
   module: {
