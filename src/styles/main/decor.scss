@@ -70,6 +70,21 @@ p {
   outline: 1px rgba(255, 0, 0, 0.4) solid; //debug outline
 }
 
+
+// Cursor implementation
+*,
+body,
+::-webkit-scrollbar,
+a,
+a:hover,
+a:focus,
+a:active,
+a:visited,
+span.close-btn,
+span.close-btn:hover {
+  cursor: url(../media/img/_cur/cursor.gif), auto;
+}
+
 /* Overall limiting content wrappers */
 
 // .wrapper {

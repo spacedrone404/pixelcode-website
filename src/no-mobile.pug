@@ -29,7 +29,7 @@ style.
   display: flex;
   position: absolute;
   transform: translateY(100%);
-  width: 30px;
+  width: 35px;
   height: 20px;
   background-color: red;
   vertical-align: bottom;
@@ -54,7 +54,11 @@ block main
   .no-mobos-wrapper    
     p.no-mobos-parag NO CELL MUTANTS ALLOWED! 
     .no-mobos-img-wrapper
-      img(src="media/img/no-phones.png", width="109%", height="109%", alt="No mobo-phones!")
+      img(src=require("./media/img/no-phones.png") alt="No mobo-phones!")
+      img(src=require("./media/img/no-mutants.png"), width="109%", height="109%", alt="No mobo-phones2!", style="margin-top: -12px;")
     p.no-mobos-parag JUST GO AWAY       
     .cursor-pink REC
     
+
+//- script. 
+

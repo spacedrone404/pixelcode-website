@@ -1,3 +1,4 @@
+.curved-box-hugo,
 .curved-box-menu,
 .curved-box-vote,
 .curved-box-misc {
@@ -13,6 +14,17 @@
   clip-path: polygon(0 72%, 100% 59%, 100% 100%, 0 100%);
 }
 
+.curved-box-hugo::after {
+  content: "HUGO FRAMEWORK BASED WEBSITES";
+  position: absolute;
+  font-family: "BlueTerminal";
+  color: white;
+  bottom: 5px;
+  transform: translateX(-50%);
+  font-size: 21px;
+  transform: translateX(6px) translateY(2px) rotate(0.6deg);
+}
+
 .curved-box-menu::after {
   content: "ON SCREEN DINING MENU";
   position: absolute;
@@ -24,7 +36,8 @@
   transform: translateX(293px) translateY(2px) rotate(0deg);
 }
 
-.curved-box-vote {
+.curved-box-vote,
+.curved-box-hugo {
   clip-path: polygon(0 65%, 100% 75%, 100% 100%, 0 100%);
 }
 
@@ -80,4 +93,8 @@
 
 .project-link {
   margin-top: 10px;
+}
+
+.body-projects {
+  height: 60vw;
 }

@@ -93,7 +93,7 @@
 .date-wrapper p {
   width: 80px;
   font-size: 28px;
-}</style><div class="footer-wrapper chamelion"><div class="date-wrapper"><div class="note blue"><div class="pin"><div id="morf-date"></div><div id="morf-month"></div></div></div></div><p class="footer-left">Create resources, <a href="https://github.com/spacedrone404">not accounts</a>!</p><p class="footer-right">© 2025 Copyleft by <a href="https://trackerninja.codeberg.page">TrackerNinja</a></p><script>const months = [
+}</style><div class="footer-wrapper chamelion"><div class="date-wrapper"><div class="note blue"><div class="pin"><div id="morf-date"></div><div id="morf-month"></div></div></div></div><p class="footer-left">Create resources, <a href="https://github.com/spacedrone404" target="_blank">not accounts</a>!</p><p class="footer-right">© 2025 Copyleft by <a href="https://trackerninja.codeberg.page" target="_blank">TrackerNinja</a></p><script>const months = [
 "January",
 "February",
 "March",
@@ -263,7 +263,7 @@ document.getElementById('scrollTop').addEventListener('click', function() {
 
 .hidden {
     display: none !important;
-}</style><div class="hidden" id="popup-container"><div class="popup-content"><span class="close-btn">×</span><p>Do not forget to visit <a href="https://trackerninja.codeberg.page">Trackerninja website</a></p></div></div><script>document.addEventListener("DOMContentLoaded", function() {
+}</style><div class="hidden" id="popup-container"><div class="popup-content"><span class="close-btn">×</span><p>Do not forget to visit <a href="https://trackerninja.codeberg.page" target="_blank">Trackerninja website</a></p></div></div><script>document.addEventListener("DOMContentLoaded", function() {
     const popupContainer = document.getElementById('popup-container');
     const closeBtn = document.querySelector('.close-btn');
 
@@ -455,7 +455,7 @@ const soundPhone = new Audio("../media/aud/enter.mp3");
 soundPhone.volume = 0.1; 
 document.getElementById('popup-container-img').addEventListener('click', function() { 
 soundPhone.play();
-});</script></body><body class="chamelion"><div class="menu-side-overall-wrapper"><div class="menu-side-wrapper"><img class="side-pix" src="./media/img/batches.gif"></div><div class="menu-side-projects-wrapper"><ul>CURRENT PROJECTS<li><a href="https://trackerninja.codeberg.page" target="_blank">RETRO PORTAL</a></li><li><a href="https://behance.net/retrowave88" target="_blank">GRAPHICS</a></li><li><a href="https://www.tiktok.com/@trackerninja808" target="_blank">TRACKER MUSIC</a></li><li><a href="https://stock.adobe.com/contributor/204789995/spacedrone808" target="_blank">ADOBE STOCK</a></li><li><a href="https://freepik.com/author/spacedrone808" target="_blank">FREEPIK STOCK</a></li></ul></div></div><div class="page-wrapper wrapper"><div class="tools-intro">Here you will find misc automations that I use almost every day. Most of them are Batch and Powershell scripts. Note that all stuff is 100% Windows 7 compatible. Have fun with it!</div><div class="batch-title">SIMPLE TIME RESYNC</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">w32tm /resync</pre><button class="copy-button" aria-label="Copy code to clipboard">Copy</button></div><div class="batch-title">PLAIN CPU SHUTDOWN</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">C:\Windows\System32\shutdown -s -t 0</pre><button class="copy-button" aria-label="Copy code to clipboard">Copy</button></div><div class="batch-title">PURGE TEMP FOLDER & CPU SHUTDOWN</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">@echo off
+});</script></body><body class="chamelion"><div class="menu-side-overall-wrapper"><div class="menu-side-wrapper"><img class="side-pix" src="./media/img/batches.gif"></div><div class="menu-side-projects-wrapper"><ul>CURRENT PROJECTS<li><a href="https://trackerninja.codeberg.page" target="_blank">RETRO PORTAL</a></li><li><a href="https://behance.net/retrowave88" target="_blank">COMPUTER GRAPHICS</a></li><li><a href="https://www.tiktok.com/@trackerninja808" target="_blank">TRACKER MUSIC</a></li><li><a href="https://stock.adobe.com/contributor/204789995/spacedrone808" target="_blank">ADOBE STOCK</a></li><li><a href="https://freepik.com/author/spacedrone808" target="_blank">FREEPIK STOCK</a></li></ul></div></div><div class="page-wrapper wrapper"><div class="tools-intro">Here you will find misc automations that I use almost every day. Most of them are Batch and Powershell scripts. Note that all stuff is 100% Windows 7 compatible. Have fun with it!</div><div class="batch-title">SIMPLE TIME RESYNC</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">w32tm /resync</pre><button class="copy-button" aria-label="Copy code to clipboard">Copy</button></div><div class="batch-title">PLAIN CPU SHUTDOWN</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">C:\Windows\System32\shutdown -s -t 0</pre><button class="copy-button" aria-label="Copy code to clipboard">Copy</button></div><div class="batch-title">PURGE TEMP FOLDER & CPU SHUTDOWN</div><div class="crt-container" style="width: 512px;"><pre class="crt-text">@echo off
 echo Cleaning up temporary files in %TEMP% folder...
 echo.
 
@@ -546,12 +546,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function isNoMobilePage() {
-    return window.location.pathname === './no-mobile.html'; 
+    return window.location.pathname === '/no-mobile.html'; 
 }
 
 function checkScreenSize() {
     if (window.innerWidth < 1680 && !isNoMobilePage()) {
-        window.location.href = './no-mobile.html';
+        window.location.href = '/no-mobile.html';
     }
 }
 

@@ -54,12 +54,12 @@ script.
     });
 
     function isNoMobilePage() {
-        return window.location.pathname === './no-mobile.html'; 
+        return window.location.pathname === '/no-mobile.html'; 
     }
 
     function checkScreenSize() {
         if (window.innerWidth < 1680 && !isNoMobilePage()) {
-            window.location.href = './no-mobile.html';
+            window.location.href = '/no-mobile.html';
         }
     }
 

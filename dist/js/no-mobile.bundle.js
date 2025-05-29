@@ -1,0 +1,1 @@
+(()=>{"use strict";document.addEventListener("DOMContentLoaded",(function(){window.innerWidth>1680&&(window.location.href="./index.html")}))})();
