@@ -8,6 +8,35 @@ block main
     .page-wrapper.wrapper
       .tools-intro Here you will find various snippets I use in web development. In almost all cases it is HTML/PUG/Javascript/PHP. Quite young section, so not so much stuff going on here, but will be updated in upcoming future for sure.
 
+      .batch-title LOCAL STORAGE COUNTER
+      .crt-container
+        pre.crt-text.
+
+          //Injecting data into div with id="counter"  
+
+          // Start counting from 1
+          const INITIAL_COUNT = 1;
+
+          // Get current count from localStorage or initialize it
+          let count = localStorage.getItem('hitCount');
+
+          if (count === null) {
+            // First visit
+            count = INITIAL_COUNT;
+          } else {
+            // Parse and increment
+            count = parseInt(count, 10) + 1;
+          }
+
+          // Save updated count back to localStorage
+          localStorage.setItem('hitCount', count);
+
+          // Display the count
+          document.getElementById('counter').textContent = count.toLocaleString();
+
+
+        button.copy-button(aria-label="Copy code to clipboard") Copy
+
       .batch-title WEBPAGE REDIRECTS IF SCREEN WIDTH IS LESS THAN 
       .crt-container
         pre.crt-text.
