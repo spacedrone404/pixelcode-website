@@ -24,7 +24,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 // }
 
 module.exports = {
-  watch: true, // Force watch mode to detect all file changes
+  // watch: true, // Force watch mode to detect all file changes
 
   // Multiple entry points for mount points, CSS sucked by JS
   entry: {
@@ -277,10 +277,9 @@ module.exports = {
 
   // Makes sure that all changes are monitored
   watchOptions: {
-    poll: true,
     ignored: /node_modules/,
-    aggregateTimeout: 400,
-    poll: 1000,
+    aggregateTimeout: 100,
+    poll: 500,
   },
 
   // Development server configuration
@@ -289,9 +288,11 @@ module.exports = {
     historyApiFallback: {
       rewrites: [{ from: /.*/, to: "/index.html" }],
     },
+    watchFiles: ["src/**/*.pug", "src/**/*.js", "src/**/*.scss"],
     compress: true,
     port: 9000,
     open: true,
-    hot: true,
+    hot: false,
+    liveReload: true,
   },
 };
