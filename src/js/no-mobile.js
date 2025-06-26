@@ -6,7 +6,7 @@ import "../styles/menu/top.scss";
 document.addEventListener("DOMContentLoaded", function () {
   const currentWindowWidth = window.innerWidth;
 
-  if (currentWindowWidth > 1680) {
+  if (currentWindowWidth >= 1580) {
     window.location.href = "./index.html";
   }
 });

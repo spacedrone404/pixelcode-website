@@ -48,7 +48,7 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "js/[name].bundle.js",
     // publicPath: "/", // local dev
-    publicPath: "./", // remote deploy
+    publicPath: "./", // remote deploy !!!! do not forget to turn it on before uplading
     clean: true,
   },
   module: {
@@ -288,11 +288,11 @@ module.exports = {
     historyApiFallback: {
       rewrites: [{ from: /.*/, to: "/index.html" }],
     },
-    watchFiles: ["src/**/*.pug", "src/**/*.js", "src/**/*.scss"],
+    watchFiles: ["src/**/*.*"],
     compress: true,
     port: 9000,
     open: true,
-    hot: false,
+    hot: true,
     liveReload: true,
   },
 };
