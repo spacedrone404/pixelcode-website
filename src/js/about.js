@@ -4,3 +4,4 @@ import "../styles/menu/secondary.scss";
 import "../styles/menu/side.scss";
 import "../styles/menu/footer.scss";
 import "../styles/about.scss";
+import "../js/tools/print.js";
