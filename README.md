@@ -1,4 +1,4 @@
-PixelCdode is a website for desktop computers that provides web development snippets, primarily for personal use.  
+PixelCode is a website for desktop computers that provides web development snippets, primarily for personal use.  
 
 The following technologies were used to build this testbed project:  
 Markup: HTML/PUG  
